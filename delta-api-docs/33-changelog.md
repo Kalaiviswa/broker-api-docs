@@ -19,8 +19,8 @@ The new channels are: [`mark_price`](31-websocket-public-channels.md#mark_price)
 | `l1_orderbook` | [`ob_l1`](31-websocket-public-channels.md#ob_l1) |
 | `l2_orderbook` | [`ob_l2`](31-websocket-public-channels.md#ob_l2) |
 | `l2_updates` | [`ob_updates`](31-websocket-public-channels.md#ob_updates) |
-| `v2/ticker` | [`ticker`](25-schemas.md#ticker) |
-| `all_trades` | [`trades`](25-schemas.md#trades) |
+| `v2/ticker` | [`ticker`](31-websocket-public-channels.md#ticker) |
+| `all_trades` | [`trades`](31-websocket-public-channels.md#trades) |
 | `v2/spot_price` | [`spot_price`](31-websocket-public-channels.md#spot_price) |
 
 ## 15.04.26
