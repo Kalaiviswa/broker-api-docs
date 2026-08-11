@@ -1,6 +1,6 @@
 # Broker API Docs
 
-A growing collection of Indian stockbroker API documentation, converted to clean Markdown for offline reading, grepping, diffing across versions, and feeding into AI coding tools (Claude Code, Cursor, GitHub Copilot, etc.) as context.
+A growing collection of Indian broker and exchange API documentation, converted to clean Markdown for offline reading, grepping, diffing across versions, and feeding into AI coding tools (Claude Code, Cursor, GitHub Copilot, etc.) as context.
 
 Each broker's docs live in their own folder, one Markdown file per section/page, generally sourced from the broker's official developer documentation portal.
 
@@ -13,6 +13,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | AngelOne (SmartAPI) | [`angelone-api-docs/`](angelone-api-docs/) | https://smartapi.angelone.in/docs |
 | Arrow Trade (REST API + Python SDK) | [`arrow-api-docs/`](arrow-api-docs/) | https://docs.arrow.trade/ |
 | Definedge Securities (INTEGRATE) | [`definedge-api-docs/`](definedge-api-docs/) | https://www.definedgesecurities.com/api-documentation/ |
+| Delta Exchange (API v2) | [`delta-api-docs/`](delta-api-docs/) | https://docs.delta.exchange/ |
 | Dhan (DhanHQ v2) | [`dhan-api-docs/`](dhan-api-docs/) | https://dhanhq.co/docs/v2/ |
 | Firstock (Developer API) | [`firstock-api-docs/`](firstock-api-docs/) | https://firstock.in/api/docs/ |
 | Flattrade (Pi) | [`flattrade-api-docs/`](flattrade-api-docs/) | https://pi.flattrade.in/docs |
