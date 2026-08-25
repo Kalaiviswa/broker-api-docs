@@ -22,6 +22,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | IIFL Capital (Markets' APIs) | [`iiflcapital-api-docs/`](iiflcapital-api-docs/) | https://developers.iiflcapital.com/apidocs/introduction |
 | INDstocks | [`indstocks-api-docs/`](indstocks-api-docs/) | https://api-docs.indstocks.com/ |
 | Kotak Securities (Neo Trade API v2) | [`kotak-api-docs/`](kotak-api-docs/) | https://app.notion.com/p/Client-documentation-236da70d37e280b3a979fc7be7b003bc |
+| Motilal Oswal (MOFSL Trading API) | [`motilaloswal-api-docs/`](motilaloswal-api-docs/) | https://invest.motilaloswal.com/moAPI/APIDocumentation/Introduction |
 | Nubra | [`nubra/`](nubra/) | https://uatapi.nubra.io |
 | Samco (Trade API v3.2) | [`samco-api-docs/`](samco-api-docs/) | https://docs-tradeapi.samco.in/ |
 | Shoonya (Finvasia Noren) | [`shoonya-api-docs/`](shoonya-api-docs/) | https://shoonya.com/api-documentation |
