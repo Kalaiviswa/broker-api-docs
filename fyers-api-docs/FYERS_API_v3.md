@@ -5158,6 +5158,15 @@ Sample Success Response for Disabled Alert
 
 ## Web Socket
 
+> **Companion documents in this folder:**
+> - **[`FYERS_HSM_MARKET_DATA_WEBSOCKET.md`](FYERS_HSM_MARKET_DATA_WEBSOCKET.md)** — the
+>   raw wire protocol for the market-data (HSM) socket: endpoint, binary auth frame,
+>   frame-type table, and the **`Authorization`-header pitfall that silently kills the
+>   connection**. The section below documents only the SDK wrapper, not the wire format.
+> - **[`FYERS_REGULATORY_CHANGES_APRIL_2026.md`](FYERS_REGULATORY_CHANGES_APRIL_2026.md)** —
+>   the content of the `mandatory-regulatory-changes` page this file links to but does
+>   not reproduce.
+
 ### Introduction
 
 The WebSocket provides a robust method for accessing real-time data or order updates seamlessly and with low latency. It enables developers and users to establish a persistent, bidirectional connection with the server, allowing them to receive continuous updates, such as symbol updates, depth updates or orderupdate. To enhance your experience with our WebSocket, here are some helpful tips and best practices 1. **Subscription Limit:** You have the flexibility to subscribe up to **5000** data subscriptions simultaneously via WebSocket with latest SDK versions, please refer Change Log. Staying within this limit ensures smooth subscription management without errors. 2. **Single Instance:** Keep in mind that you can create only one WebSocket connection instance at a time. This approach ensures stability and prevents issues that might arise from multiple concurrent connections. 3. **Efficient Thread Management:** WebSocket operates on a dedicated thread, allowing it to run independently of your main application thread. This design guarantees that your primary tasks can continue without interruptions from WebSocket operations. 4. **Customizable Callback Functions:** Tailor your application's behavior using callback functions provided by the WebSocket. These functions empower you to define specific actions for events like data updates or error occurrences. 5. **Auto-Reconnect:** Enjoy uninterrupted connectivity by enabling automatic reconnection in case of disconnection. Simply set the reconnect parameter to true during WebSocket initialization, ensuring your application can recover without manual intervention.You can set max reconnection count upto 50. 6. **Logging to File:** If you want to log data to a file, you can set the write_to_file parameter to true. This feature allows you to efficiently save received data to a log file for analysis or archival purposes. The write_to_file function will only work without callback functions. 7. **Reconnect Retry:** If you want to define dynamic retry count(max 50), you can set the reconnect_retry parameter to int value of number of times you want it to try reconnection.(In case of node fyersdata.autoreconnect(trycount)) 8. **Disable Logging(node JS):** In case you want to disable logging use disable logging flag to disable logging sample format:
