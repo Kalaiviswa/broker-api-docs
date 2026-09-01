@@ -55,6 +55,8 @@ HSI is the stream that delivers order updates. Connect with HSI to view feeds of
 
 By running Inspect on the `demo.html` file you can get the WebSocket string.
 
+For in-depth detail of WebSocket functions, refer: <https://www.hypersync.in/hs_interactive_api_js/>
+
 ## Limits
 
 - Total number of channels a user can use at a time: **16**
