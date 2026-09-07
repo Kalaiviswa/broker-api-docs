@@ -130,6 +130,7 @@ No request body or parameters required.
 | exSeg | string | Exchange segment e.g., "nse_cm" |
 | ordGenTp | string | "AMO" for after-market orders, else blank |
 | ordDtTm | string | Order date/time |
+| GuiOrdId | string | Caller-defined tag sent as `ig` in place order, echoed back; empty when no tag was sent |
 | stat | string | Overall status at top level: "Ok" for success |
 
 ### 5.2 Order History Response
@@ -214,6 +215,7 @@ No request body or parameters required.
 | ordDur | string | Order validity (DAY/IOC) |
 | trnsTp | string | Transaction type (B/S) |
 | usrId | string | User/client ID |
+| GuiOrdId | string | Caller-defined tag sent as `ig` in place order, echoed back; empty when no tag was sent |
 
 ### Common Response Fields
 
