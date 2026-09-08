@@ -7,7 +7,13 @@ Unofficial Markdown conversion of the Kotak Securities Neo Trade API "Client doc
 - **Postman collection:** https://bit.ly/3W4x7oO — also vendored in the SDK repo at `docs/postman/`
 - **Migration guide (v1 → v2):** https://bit.ly/46nKKpg
 
-*Last reconciled against the SDK repo on 2026-09-07 (SDK v3.0.6, HEAD `a365994`).*
+*Last reconciled against the SDK repo on 2026-09-07 (SDK v3.0.6, HEAD `a365994`),
+and against the Notion source's Order Report APIs page on 2026-09-08.*
+
+> **The response field tables here are Kotak's own, and Kotak's own are partial.**
+> Each Order Report table carries a vendor note pointing at a separate API glossary
+> for the rest; a live trade object has roughly 50 keys against the 13 listed. A
+> field missing from a table is not evidence the API does not return it.
 
 ## Contents
 
