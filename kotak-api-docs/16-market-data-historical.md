@@ -50,7 +50,24 @@ Enforced by the backend, not by the client. A range wider than the limit for its
 
 ### Rate limit
 
-Kotak publishes no rate limit for this endpoint. Measured against the live endpoint on 2026-09-06: 12 back-to-back requests returned 5 successes followed by HTTP 429, while a 0.5 s gap sustained 10/10. Pace at or below roughly 4 requests/second. No `Retry-After` header is sent on a 429, so back off exponentially.
+Kotak publishes no rate limit for this endpoint, so the figure below is measured, and it has moved once already — re-measure before trusting it.
+
+**Current guidance: pace at 1 request/second.** Measured against the live endpoint on 2026-09-21:
+
+| Gap between requests | Result |
+| --- | --- |
+| 0.25 s | 5/10 succeeded |
+| 0.5 s | 6/10 succeeded |
+| 0.75 s | 11/12 succeeded |
+| 1.0 s | 20/20 succeeded over 23 s |
+
+A single request after an idle period succeeds, and a quotes call immediately before one does not disturb it, so this is the historical endpoint's own sustained ceiling rather than a burst allowance or a budget shared with quotes.
+
+The earlier measurement on 2026-09-06 — 12 back-to-back requests giving 5 successes then HTTP 429, with a 0.5 s gap sustaining 10/10, suggesting roughly 4/second — no longer holds. Kotak appears to have tightened the endpoint in the interim.
+
+Pacing at the ceiling costs no wall clock: at 4/second roughly half the requests returned 429, and each cost a backoff plus a wasted round trip, so a chunk averaged about a second either way.
+
+No `Retry-After` header is sent on a 429, so back off exponentially.
 
 ## 5. Request
 
