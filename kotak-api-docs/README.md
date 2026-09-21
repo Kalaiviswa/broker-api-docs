@@ -67,6 +67,6 @@ The Positions, Holdings, Limits, Margin, Order Book, Order History and Trade Boo
 **Rate limit:** 10 requests/second across APIs, but this is not uniform and the per-endpoint figure wins where one is documented:
 
 - Quotes: 25 requests/second, and at most 50 instruments per call (see [05](05-market-data-quotes.md); measured, the instrument cap is lower still).
-- Historical candles: no published limit. Measured at roughly 5 requests/second before HTTP 429, with no `Retry-After` header (see [16](16-market-data-historical.md)).
+- Historical candles: no published limit. Measured 2026-09-21 at **1 request/second** sustained; 0.75 s between requests already draws HTTP 429, and no `Retry-After` header is sent. An earlier measurement on 2026-09-06 put it near 5/second, so this one is worth re-checking rather than assuming (see [16](16-market-data-historical.md)).
 
 > Unofficial conversion for personal/educational reference. Always verify against Kotak's official documentation. Support: service.securities@kotak.com
