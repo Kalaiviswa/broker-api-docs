@@ -2,6 +2,9 @@
 
 **Status:** verified against the live Fyers endpoint on **2026-08-31** and cross-checked
 against the official `fyers-apiv3` **3.1.16** SDK (`FyersWebsocket/data_ws.py`).
+Re-checked **2026-09-29** against **3.1.18** (PyPI 2026-09-17): nothing in this protocol
+changed. See *Change history* at the end for that release and for the 30 Sep 2026
+authentication notice.
 
 ## Why this file exists
 
@@ -12,7 +15,8 @@ OpenAlgo talks to this socket directly (`openalgo/broker/fyers/streaming/fyers_h
 so the wire protocol is recorded here.
 
 The other two Fyers sockets *are* covered in `FYERS_API_v3.md`: the order socket
-(~line 6010) and the TBT/50-depth socket (~line 6237). They authenticate completely
+(section *Order Websocket Usage Guide*) and the TBT/50-depth socket (section
+*Tick-by-Tick (TBT) Websocket Usage Guide*). They authenticate completely
 differently — see the comparison table below.
 
 ---
@@ -57,8 +61,8 @@ header is harmless. The official SDK passes no headers at all here
 wss://socket.fyers.in/hsm/v1-5/prod
 ```
 
-Still current as of 2026-08-31. Confirmed in `fyers-apiv3` 3.1.16 (PyPI, 2026-08-06)
-and `fyers-web-sdk-v3` 2.0.0 (npm, 2026-08-02) — the JS SDK kept the same URL across
+Still current as of 2026-09-29. Confirmed in `fyers-apiv3` 3.1.18 (PyPI, 2026-09-17;
+the URL is unchanged since 3.1.16) and `fyers-web-sdk-v3` 2.0.0 (npm, 2026-08-02) — the JS SDK kept the same URL across
 its major-version bump. Probing adjacent versions (`v1-4`, `v1-6` … `v2-0`) returns
 **HTTP 404** from Cloudflare, so `v1-5` is the only live version; a 404 at handshake
 means the URL is wrong, not that the version has moved on.
@@ -138,6 +142,14 @@ Scrip token format — `"<prefix>|<segment>|<exchange_token>"`:
 
 Examples: `sf|nse_cm|2885` (RELIANCE), `sf|nse_cm|3045` (SBIN), `if|nse_cm|Nifty 50`.
 
+An index token carries the index's *display name* (`Nifty 50`, `Nifty Bank`, `India VIX`),
+not a number. Fyers publishes the symbol-to-name table at
+<https://public.fyers.in/sym_details/index_hsm_mapping.json> (121 entries on 2026-09-29,
+e.g. `"NSE:NIFTY50-INDEX": "Nifty 50"`). `fyers-apiv3` 3.1.18 fetches it from there when
+it connects and falls back to its bundled `map.json` only if the fetch fails; earlier
+SDKs used the bundled file alone, so a client with its own copy of the table lags
+whenever Fyers adds an index.
+
 Request type **5** is unsubscribe, with the same field layout.
 
 ## Response frame types
@@ -186,7 +198,7 @@ options, both verified working:
 - **WebSocket protocol ping/pong** — `run_forever(ping_interval=30, ping_timeout=10)`,
   feeding the liveness clock from `on_ping`/`on_pong`. This is what OpenAlgo uses.
 - **Application-level ping** — the SDK's approach: send the 3-byte binary frame
-  `bytes([0, 1, 11])` every 10 seconds from a dedicated thread (`data_ws.py:1644`).
+  `bytes([0, 1, 11])` every 10 seconds from a dedicated thread (`data_ws.py`, `__ping`).
 
 ## Comparison: the three Fyers sockets
 
@@ -196,7 +208,7 @@ options, both verified working:
 | Auth | **in-band binary frame** (`hsm_key`) | `Authorization: <appId>:<token>` header | `Authorization: <appId>:<token>` header |
 | `Authorization` header | **must be absent** | required | required |
 | Encoding | binary TLV | JSON text | JSON request / protobuf response |
-| Docs | this file | `FYERS_API_v3.md` ~6010 | `FYERS_API_v3.md` ~6237 |
+| Docs | this file | `FYERS_API_v3.md`, *Order Websocket Usage Guide* | `FYERS_API_v3.md`, *Tick-by-Tick (TBT) Websocket Usage Guide* |
 
 ## Known SDK quirks (do not copy these)
 
@@ -216,3 +228,38 @@ options, both verified working:
 See `FYERS_REGULATORY_CHANGES_APRIL_2026.md`. Market data is classified as a
 **non-transactional** API and is explicitly exempt from the static-IP whitelisting
 requirement — that gate applies to order placement only.
+
+## Change history
+
+### 2026-09-29 — SDK 3.1.18 and the 30 Sep 2026 authentication notice
+
+Fyers emailed customers a notice effective **Wednesday 30 Sep 2026**: *"all WebSocket
+connections will require a valid access token. Connections using an invalid or expired
+access token will be rejected"*, and custom implementations must *"ensure authentication
+is implemented in line with the official FYERS SDK"*. Nothing about it appears in the
+docs changelog, whose last entry is 06 Sep 2026.
+
+All three SDKs were re-released on **2026-09-17** (`fyers-apiv3` 3.1.18; `fyers-api-v3`
+2.3.0 and `fyers-web-sdk-v3` 2.2.0 on npm). Diffing Python 3.1.17 → 3.1.18 and Node
+2.2.0 → 2.3.0 shows **no authentication change on any socket**. The Python release only
+(a) loads the index mapping from the public URL noted under *Request type 4*, (b) reuses
+its message and ping threads across reconnects, and (c) renames the option-chain
+`greeks` parameter to `include_greeks` and adds `include_oi`. `order_ws.py` and
+`tbt_ws.py` are byte-identical to 3.1.17.
+
+So "in line with the official SDK" means the scheme already in the comparison table
+above. Measured on 2026-09-29 with a valid token:
+
+| Socket | `Authorization` header sent | Result |
+| --- | --- | --- |
+| Order updates | `<appId>:<token>` | `{"code":1605,"message":"Successfully subscribed"}` |
+| Order updates | bare JWT | **HTTP 403** at the handshake |
+| Order updates | `<appId>:garbage` | **HTTP 403** at the handshake |
+| TBT URL lookup (`GET /indus/home/tbtws`) | bare JWT | `401 unauthorised access token` |
+| TBT URL lookup | `<appId>:<token>` | `200`, returns the socket URL |
+| TBT 50-depth | `<appId>:<token>` | streams 50 levels (41 diffs per symbol in 20 s) |
+
+The order socket already enforces the rule at the handshake. OpenAlgo's TBT client had
+been sending the bare JWT, which the socket tolerated but the URL lookup refused;
+OpenAlgo commit `045ff059b` (2026-09-29) makes it send `<appId>:<token>` like the SDK.
+The HSM socket needs nothing: no header, in-band `hsm_key` frame, as documented above.

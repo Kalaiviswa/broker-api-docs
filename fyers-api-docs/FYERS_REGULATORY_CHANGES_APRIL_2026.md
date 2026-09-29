@@ -8,7 +8,11 @@
 > HTTP 404. The rendered content comes from two Redocly OpenAPI specs referenced by
 > the SPA bundle, which are the authoritative machine-readable sources:
 > - `https://myapi.fyers.in/static/media/v3.1.32a8eeba1fba866d1201.yaml` → regulatory changes
-> - `https://myapi.fyers.in/static/media/v3.e760f0a0a1029ff225e0.yaml` → `/docsv3`
+>   (still the same file on 2026-09-29, so this page has not changed since capture)
+> - `https://myapi.fyers.in/static/media/v3.41fe6ac3325b670b7549.yaml` → `/docsv3`
+>   (replaced `v3.e760f0a0a1029ff225e0.yaml` with the 06 Sep 2026 docs release; the old
+>   file is still served but stale). `regenerate_fyers_api_v3.py` in this folder reads
+>   the bundle and picks up the current name by itself.
 >
 > The hashed filenames change on redeploy; re-extract them from the SPA bundle if
 > these 404.
@@ -54,7 +58,7 @@ IP requirements. A streaming failure is never explained by IP whitelisting — s
 > API access. Access tokens will be valid only as per the updated authentication
 > cycle."
 
-`FYERS_API_v3.md` line 219 carries the matching note: *"Refresh token will be
+`FYERS_API_v3.md` (*Authentication & Login Flow*) carries the matching note: *"Refresh token will be
 discontinued from 1st April. When we validate the auth code to generate the access
 token, a refresh token is also sent in the response. The refresh token has a validity
 of 15 days."*
@@ -89,9 +93,10 @@ Verified 2026-08-31 while diagnosing a WebSocket outage:
 - **No appId-hash, DPI, or new query-param/header requirement** on the data socket.
 - **No vendor/source registration requirement** — the auth frame's source field is
   unvalidated.
-- The changelog through 13 Aug 2026 contains **no** HSM endpoint or handshake change.
+- The changelog through 06 Sep 2026 contains **no** HSM endpoint or handshake change.
   The last socket-related entries are 22 Aug 2025 (reconnection logic) and
-  23 Jun 2025 (NSE equity on TBT).
+  23 Jun 2025 (NSE equity on TBT). The 30 Sep 2026 WebSocket-authentication notice
+  is covered in `FYERS_HSM_MARKET_DATA_WEBSOCKET.md`, *Change history*.
 
 ## Host inconsistencies worth knowing
 
