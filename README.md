@@ -18,6 +18,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | Firstock (Developer API) | [`firstock-api-docs/`](firstock-api-docs/) | https://firstock.in/api/docs/ |
 | Flattrade (Pi) | [`flattrade-api-docs/`](flattrade-api-docs/) | https://pi.flattrade.in/docs |
 | Fyers (API v3) | [`fyers-api-docs/`](fyers-api-docs/) | https://myapi.fyers.in/docsv3 |
+| Groww (Trading API) | [`groww-api-docs/`](groww-api-docs/) | https://groww.in/trade-api/docs/curl |
 | HDFC Sky (Open API) | [`hdfcsky-api-docs/`](hdfcsky-api-docs/) | https://developer.hdfcsky.com/sky-docs/docs/intro |
 | IIFL Capital (Markets' APIs) | [`iiflcapital-api-docs/`](iiflcapital-api-docs/) | https://developers.iiflcapital.com/apidocs/introduction |
 | INDstocks | [`indstocks-api-docs/`](indstocks-api-docs/) | https://api-docs.indstocks.com/ |
