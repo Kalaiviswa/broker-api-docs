@@ -10,6 +10,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | --- | --- | --- |
 | 5paisa (Xstream API) | [`fivepaisa-api-docs/`](fivepaisa-api-docs/) | https://xstream.5paisa.com/dev-docs |
 | Aliceblue (ANT API) | [`aliceblue-api-docs/`](aliceblue-api-docs/) | https://ant.aliceblueonline.com/productdocumentation/ |
+| Aliceblue (ANT API v2) | [`aliceblue-api-docs/`](aliceblue-api-docs/) | https://v2api.aliceblueonline.com/ |
 | AngelOne (SmartAPI) | [`angelone-api-docs/`](angelone-api-docs/) | https://smartapi.angelone.in/docs |
 | Arrow Trade (REST API + Python SDK) | [`arrow-api-docs/`](arrow-api-docs/) | https://docs.arrow.trade/ |
 | Definedge Securities (INTEGRATE) | [`definedge-api-docs/`](definedge-api-docs/) | https://www.definedgesecurities.com/api-documentation/ |
@@ -25,6 +26,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | Kotak Securities (Neo Trade API v2) | [`kotak-api-docs/`](kotak-api-docs/) | https://app.notion.com/p/Client-documentation-236da70d37e280b3a979fc7be7b003bc |
 | Motilal Oswal (MOFSL Trading API) | [`motilaloswal-api-docs/`](motilaloswal-api-docs/) | https://invest.motilaloswal.com/moAPI/APIDocumentation/Introduction |
 | mStock (Trading API v1, Type B) | [`mstock-api-docs/`](mstock-api-docs/) | https://tradingapi.mstock.com/docs/v1/typeB/User/ |
+| Master Trust (Trade API) | [`mastertrust-api-docs/`](mastertrust-api-docs/) | https://tradeapi.mastertrust.co.in/ |
 | Nubra | [`nubra/`](nubra/) | https://uatapi.nubra.io |
 | Rupeezy (Vortex API v2.2) | [`vortex-api-docs/`](vortex-api-docs/) | https://vortex.rupeezy.in/docs/latest/ |
 | Sahi (Direct API, setup guide) | [`sahi-api-docs/`](sahi-api-docs/) | https://docs.sahi.com/ |
