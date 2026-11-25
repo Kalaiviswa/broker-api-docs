@@ -34,6 +34,7 @@ Each broker's docs live in their own folder, one Markdown file per section/page,
 | Sahi (Direct API, setup guide) | [`sahi-api-docs/`](sahi-api-docs/) | https://docs.sahi.com/ |
 | Samco (Trade API v3.2) | [`samco-api-docs/`](samco-api-docs/) | https://docs-tradeapi.samco.in/ |
 | Shoonya (Finvasia Noren) | [`shoonya-api-docs/`](shoonya-api-docs/) | https://shoonya.com/api-documentation |
+| Symphony XTS (Trading Front End API v2, Interactive) | [`xts-api-docs/`](xts-api-docs/) | https://symphonyfintech.com/xts-trading-front-end-api-v2/ |
 | TradeSmart (Noren v2) | [`tradesmart-api-docs.md`](tradesmart-api-docs.md) | https://web.tradesmartonline.in/api |
 | Tradejini (CubePlus API v2) | [`tradejini-api-docs/`](tradejini-api-docs/) | https://developer.tradejini.com/docs |
 | Upstox | [`upstox-api-docs/`](upstox-api-docs/) | https://upstox.com/developer/api-documentation |
