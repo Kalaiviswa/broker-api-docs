@@ -16,6 +16,12 @@
 >
 > The hashed filenames change on redeploy; re-extract them from the SPA bundle if
 > these 404.
+>
+> **Update 2026-11-25.** `myapi.fyers.in/docsv3` now answers 301 to
+> <https://fyers.in/api-docs/v3/getting-started/> and the SPA bundle no longer
+> references any spec YAML. The API docs moved to <https://fyers.in/api-docs/v3/>
+> on 16 Oct 2026, and `regenerate_fyers_api_v3.py` now reads those pages. See
+> `FYERS_CHANGES_OCT_NOV_2026.md` for what changed.
 
 `FYERS_API_v3.md` links to this page four times (Rate Limits, App Creation,
 Authentication & Login Flow, Order Placement Guide) but does not reproduce its
